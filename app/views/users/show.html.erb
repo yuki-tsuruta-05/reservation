@@ -1,0 +1,43 @@
+<div class="room">
+  <div class="row1">
+    <div class="room-nav room-nav-pc">
+      <ul>
+        <li class="action"><%= link_to "アカウント", user_path(current_user.id) %></li>
+        <li class="action"><%= link_to "プロフィール", edit_user_path %></li>  
+      </ul>
+    </div>
+
+    <div class="room-nav room-nav-mobile">
+      <ul>
+        <li class="action"><%= link_to "アカウント", user_path(current_user.id) %></li>
+        <li class="action"><%= link_to "プロフィール", edit_user_path %></li>        
+      </ul>    
+    </div>
+    <div class="room-view">
+      <div class="room-view-box">
+        <%= form_with model: @users do |f| %>
+          <div class="room-content">
+            <div class="row2">
+              <h2>アカウント</h2>            
+            </div>
+          </div>
+          <div class="room-content">
+            <div class="row2">
+              <%= f.label :email, "メールアドレス", class:"room-label" %>
+              <span><%= current_user.email %></span>
+            </div>
+          </div>
+          <div class="room-content">
+            <div class="row2">
+              <%= f.label :password, "パスワード",class:"room-label" %>
+              <span><%= "*********" %></span>
+            </div>
+          <div class="room-registration">
+            <%= link_to "編集", edit_user_registration_path, class: "actions btn-login form-control-b" %>            
+            </div>
+          </div>                                                   
+        <% end %>    
+      </div>
+    </div>
+  </div>  
+</div>

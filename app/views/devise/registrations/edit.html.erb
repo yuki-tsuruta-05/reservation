@@ -1,0 +1,38 @@
+<div class="container devise">
+  <div class="device-frame">
+    <h2 class="title-login">アカウント編集</h2>
+    <div class="devise-inner">
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+
+      <div class="field-a">
+        <%= f.label :email, "メールアドレス" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control-b" %>
+      </div>
+        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+          <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+        <% end %>
+
+      <div class="field-a">
+      <%= f.label :password ,"変更後パスワード(変更する場合のみ入力)"%>
+      <%= f.password_field :password, autocomplete: "new-password", class: "form-control-b"  %>
+      </div>
+
+      <div class="field-a">
+        <%= f.label :password_confirmation, "パスワード確認用(変更する場合のみ入力)" %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control-b" %>
+      </div>
+
+      <div class="field-a">
+        <%= f.label :current_password,"現在のパスワード" %>
+        <%= f.password_field :current_password, placeholder:"新しいパスワード", autocomplete: "current-password", class: "form-control-b" %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "編集", class: "actions btn-login form-control-b"%>
+      </div>
+      <% end %>
+      <%= link_to "戻る", :back %>
+    </div>
+  </div>
+</div>

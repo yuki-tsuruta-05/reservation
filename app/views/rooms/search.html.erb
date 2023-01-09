@@ -1,0 +1,35 @@
+<div class="room-posts">
+
+  <h4>登録済みルーム一覧</h4>
+
+  <table>
+    <thead>
+      <tr>
+        <th>ルーム画像</th>
+        <th>ルーム名</th>
+        <th>住所</th>
+        <th>ルーム料金</th>                            
+      </tr>
+    </thead>
+      
+    <tbody>
+    <% @rooms.each do |room| %>
+      <tr>
+        <td>
+        <% if room.room_image != nil %>
+          <%= link_to room do %>
+            <%= image_tag room.room_image.variant(resize:"100x100^") if room.room_image.attached?%>   
+          <% end %>         
+        <% else %>
+          <p>no image</p>
+        <% end %>   
+        </td>
+        <td class="room_name"><%= link_to room.room_name ,room%></td>
+        <td class="address"><%= room.address %></td>
+        <td class="charge">¥<%= room.charge %></td>
+      </tr>
+    <% end %>  
+    </tbody>
+  </table>
+</div>
+

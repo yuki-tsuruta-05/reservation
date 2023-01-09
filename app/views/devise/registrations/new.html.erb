@@ -1,0 +1,38 @@
+<!--一番でかい枠組み-->
+<div class="container devise">
+  <!--中央の枠組み-->
+  <div class="device-frame">
+    <h2>新しいアカウントを作成</h2>
+    <!--登録する内容のみの枠組み-->
+    <div class="devise-inner">
+    <%= form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user', local: true do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+    
+        <div class="field">
+          <div class="required-a"><span class="required-b"></span></div>
+          <%= f.text_field :name, placeholder: "ユーザー名", autofocus: true, autocomplete: "name", class: "form-control-b"%>
+        </div>
+
+        <div class="field">
+          <div class="required-a"><span class="required-b"></span></div>
+          <%= f.email_field :email, placeholder:"メールアドレス", autofocus: true, autocomplete: "email", class: "form-control-b"%>
+        </div>
+
+        <div class="field">
+          <div class="required-a"><span class="required-b"></span></div>     
+          <%= f.password_field :password, placeholder:"パスワード", autocomplete: "new-password", class: "form-control-b"%>
+        </div>
+
+        <div class="field">
+          <div class="required-a"><span class="required-b"></span></div>
+          <%= f.password_field :password_confirmation, placeholder:"パスワード確認", autocomplete: "new-password", class: "form-control-b"%>
+        </div>
+        <div class="actions">
+          <%= f.submit "新しいアカウントを作成", class: "actions btn-login form-control-b" %>
+        </div>
+      <% end %>
+
+      <%= render"devise/shared/links" %>
+    </div>
+  </div>
+</div>
