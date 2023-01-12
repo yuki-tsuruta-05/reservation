@@ -15,7 +15,7 @@
     <header class="header">
       <div class="header-inner">
         <div class="left-nav">
-          <%= link_to image_tag("https://presite-potepancamp-rails-02.herokuapp.com/assets/logo.png"), tops_home_path%>
+          <%= link_to image_tag("https://rails-02-sample.herokuapp.com/assets/common/logo.png", class: 'top-logg'), tops_home_path%>
           <div class="nav-search-area">
             <%= form_with url: search_rooms_path, method: :get do |f| %>
               <div class="form-control-d"><i class="fas fa-map-pin"></i><%= f.text_field :area ,placeholder: "エリア" %></div>
@@ -38,7 +38,7 @@
             <% if current_user.image.present? %>
               <%= image_tag current_user.image ,class:"host-icon" ,id:"i-con" if current_user.image.attached? %>      
             <% else %>
-              <%= image_tag 'https://presite-potepancamp-rails-02.herokuapp.com/assets/default_icon.jpg',class:"host-icon" ,id:"i-con"%>
+              <%= image_tag 'https://rails-02-sample.herokuapp.com/assets/common/default-avatar-7a6cbfd7993e89f24bfc888f4a035a83c6f1428b8bdc47eed9095f2799a40153.png',class:"host-icon" ,id:"i-con"%>
             <% end %>  
            
         <!-- ナビゲーションメニュー -->

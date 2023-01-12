@@ -37,8 +37,12 @@ class ReservationsController < ApplicationController
   end
 
   def show
-    @reservation = Reservation.find(params[:id])
-    @room = Room.find(@reservation.room_id)
+    if params[:confirm]
+      render 'tops/home'
+    else  
+      @reservation = Reservation.find(params[:id])
+      @room = Room.find(@reservation.room_id)
+    end
   end
     
   def reservation_params
