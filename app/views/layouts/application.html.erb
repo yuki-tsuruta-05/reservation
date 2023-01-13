@@ -1,16 +1,77 @@
+
 <!DOCTYPE html>
-<html>
+  <html>
+  
   <head>
-    <title>Reservation</title>
+    <title>TaskApp2</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" rel="stylesheet">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
-    <%= yield %>
+    <header class="header">
+      <div class="header-inner">
+        <div class="left-nav">
+          <%= link_to image_tag("https://rails-02-sample.herokuapp.com/assets/common/logo.png", class: 'top-logg'), tops_home_path%>
+          <div class="nav-search-area">
+            <%= form_with url: search_rooms_path, method: :get do |f| %>
+              <div class="form-control-d"><i class="fas fa-map-pin"></i><%= f.text_field :area ,placeholder: "エリア" %></div>
+              <div class="form-control-d"><i class="fas fa-search"></i><%= f.text_field :word, placeholder: "キーワード" %></div>
+              <%= f.submit "探す", style: "display: none;" %>
+            <% end %>
+          </div>
+        </div>
+        
+          <% unless user_signed_in? %>
+          <div class="right-nav1">
+            <%= button_to "ログイン", new_user_session_path, method: :get, class: 'btn-login'%>
+            <%= button_to "登録する", new_user_registration_path, method: :get, class: 'btn-signup'%>
+          </div>
+          <% end %>
+
+          <% if user_signed_in? %>
+            <div class="right-nav2">
+            <span class="user-name"><%= current_user.name %></span>
+            <% if current_user.image.present? %>
+              <%= image_tag current_user.image ,class:"host-icon" ,id:"i-con" if current_user.image.attached? %>      
+            <% else %>
+              <%= image_tag 'https://rails-02-sample.herokuapp.com/assets/common/default-avatar-7a6cbfd7993e89f24bfc888f4a035a83c6f1428b8bdc47eed9095f2799a40153.png',class:"host-icon" ,id:"i-con"%>
+            <% end %>  
+           
+        <!-- ナビゲーションメニュー -->
+            <div class="collape navbar-collap" >
+              <ul class="nav">
+                <li class="nav-item">
+                  <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "ルーム登録", :new_room %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "予約一覧", :reservations %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "登録ルーム一覧", "/rooms/post/user" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "設定", user_path(current_user.id) %>
+                </li>          
+              </ul>
+            </div>
+          </div>  
+          <% end %>
+      </div>
+    </header>
+    
+    <%= render "shared/flash" %>
+
+  <%= yield %>
   </body>
+  
+  <footer>
+    <p>© 2020 POTEPAN.INC.</p>
+  </footer>
 </html>

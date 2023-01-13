@@ -1,0 +1,50 @@
+<div class="room-show">
+     <%= render "shared/error", object: @reservation %>
+  <div class="row2">
+
+    <div class="room-inf">
+      <% if @room.room_image != nil %>
+        <%= image_tag @room.room_image, class:"room-img" if @room.room_image.attached? %>          
+      <% else %>
+        <p>no image</p>
+      <% end %>   
+      <div class="room-explanation">
+        <div class="room-icon">
+          <%= image_tag 'https://rails-02-sample.herokuapp.com/assets/common/default-avatar-7a6cbfd7993e89f24bfc888f4a035a83c6f1428b8bdc47eed9095f2799a40153.png',class:"host-icon" %>
+        </div>
+        <div class="room-profile">
+          <p class="room-name"><%= @room.room_name %></p>
+          <p class="address"><%= @room.address %></p>
+        </div>
+      </div>
+      <p class="room-detail"><%= @room.room_introducution %></p>
+    </div>
+    <div class="reservation-show">
+      <div class="reservation-new">
+        <% if user_signed_in? %>
+        <h5 class="room-price">¥<%= @room.charge %>/日</h5>
+          <%= form_with model: @reservation, url:confirm_reservations_path do |f| %>
+            <%= f.label :start_day, "開始日",class:"reservation-label" %>
+            <%= f.date_field :start_day, class: "form-control-b form-control-c"%>
+            <%= f.label :end_day, "終了日",class:"reservation-label" %>
+            <%= f.date_field :end_day, class: "form-control-b form-control-c" %>
+            <%= f.label :number_of_people, "人数",class:"reservation-label" %>
+            <%= f.number_field :number_of_people, placeholder: "人数を入力", class: "form-control-b form-control-c", min: 1 %>
+            <%= f.hidden_field :room_id, value: @room.id %>
+            <%= f.submit "予約確認画面へ", class: 'btn-login'%>
+          <% end %> 
+        <% end %> 
+        <% unless user_signed_in? %>
+          <h5 class="room-price">¥<%= @room.charge %>/日</h5>
+          <p class="phrase3">
+          新規登録がまだの方</p>
+          <%= button_to "登録する", new_user_registration_path, method: :get, class: 'btn-signup'%>
+          ログインをされていない方は
+          どちらかをお願いいたします。
+          <%= button_to "ログイン", new_user_session_path, method: :get, class: 'btn-login'%>
+          <%= button_to "登録する", new_user_registration_path, method: :get, class: 'btn-signup'%>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

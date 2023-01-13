@@ -1,0 +1,40 @@
+<%= javascript_pack_tag 'reservation.js' %>
+<div class="room">
+  <div class="row1">
+    <div class="room-view">
+      <div class="reservation-view-box">
+        <div class="room-content">
+          <div class="row2">
+            <h2>確定された予約</h2>            
+          </div>
+        </div>
+        <div class="room-content">
+          <div class="row2">
+            <span class="reservation-label">予約した部屋</span>
+            <span><%= @room.room_name %></span>
+          </div>
+        </div>
+        <div class="room-content">
+          <div class="row2">
+            <span class="reservation-label">開始日</span>
+            <span><%= @reservation.start_day %></span>
+          </div>
+        </div>          
+        <div class="room-content">
+          <div class="row2">
+            <span class="reservation-label">終了日</span>
+            <span><%= @reservation.end_day %></span>
+          </div>
+        </div>
+        <div class="room-content">
+          <div class="row2">
+            <span class="reservation-label">価格</span>
+            <span><%= @reservation.total_charge %></span>
+          </div>
+        </div>
+        <%= link_to "トップページへ戻る",  tops_home_path, class: "actions btn-login form-control-a" %>
+        <%= link_to "予約一覧", :reservations, class: "actions btn-login form-control-b" %>                                                 
+      </div>
+    </div>
+  </div>  
+</div>

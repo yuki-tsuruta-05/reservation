@@ -11,3 +11,14 @@ import "channels"
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+import 'bootstrap';
+import '../stylesheets/application';
+
+
+$(document).on('turbolinks:load',(function(){
+  $(".host-icon").click(function() {
+    $(".nav").toggle("");
+  });
+}));
+
