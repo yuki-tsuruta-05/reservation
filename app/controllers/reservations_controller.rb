@@ -2,8 +2,8 @@ class ReservationsController < ApplicationController
   protect_from_forgery :except => [:confirm]
 
   def index
-    @reservations = Reservation.all
-    room = Room.all
+    @user = User.find(current_user.id)
+    @reservations = Reservation.where(id: @user.id)
   end
 
   def confirm
